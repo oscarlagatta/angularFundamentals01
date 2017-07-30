@@ -24,7 +24,6 @@ import { Passenger, Child } from '../../models/passenger.interface';
         </div>
        </li>
       </ul>
-      
     </div>
     `
 })
