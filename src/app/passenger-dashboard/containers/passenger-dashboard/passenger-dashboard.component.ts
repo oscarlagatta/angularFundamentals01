@@ -10,6 +10,9 @@ import { Passenger, Child } from '../../models/passenger.interface';
         [items]="passengers"
         >
       </passenger-count>
+      <div *ngFor="let passenger of passengers;">
+        {{ passenger.fullname}}
+      </div>
       <passenger-detail 
         *ngFor="let passenger of passengers;"
         [detail]="passenger"
@@ -24,7 +27,7 @@ export class PassengerDashboardComponent implements OnInit {
   passengers: Passenger[];
   
   ngOnInit(){
-    console.log('ngOnInit');
+    //console.log('ngOnInit');
     this.passengers = [
       {
         id: 1,
@@ -68,7 +71,6 @@ export class PassengerDashboardComponent implements OnInit {
     this.passengers = this.passengers.filter((passenger: Passenger) => {
         return passenger.id !== event.id;
     });  
-    console.log(event);
   }
 
   handleEdit(event: Passenger) {
@@ -83,6 +85,5 @@ export class PassengerDashboardComponent implements OnInit {
       }
       return passenger;
     });
-    console.log(this.passengers);
   }
 }

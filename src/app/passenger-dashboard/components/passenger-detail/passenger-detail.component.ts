@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { Passenger} from '../../models/passenger.interface';
 
 @Component({
@@ -37,7 +37,7 @@ import { Passenger} from '../../models/passenger.interface';
     `,
     styleUrls: ['passenger-detail.component.scss']
 })
-export class PassengerDetailComponent {
+export class PassengerDetailComponent implements OnChanges, OnInit {
 
     @Input()
     detail: Passenger;
@@ -49,7 +49,23 @@ export class PassengerDetailComponent {
     remove: EventEmitter<any> = new EventEmitter();
 
     editing: boolean = false;
+
+    // To avoid updating the parent when 
+    // we start making changes, we use 
+    // the onChanges life cycle hook to break the
+    // binding between the parent and child 
+    // component.
+    // ngOnChanges gives us a changes object 
+    ngOnChanges(changes){
+        if ( changes.detail){
+            this.detail = Object.assign({}, changes.detail.currentValue);
+        }
+        console.log('ngOnChanges');
+    }
     
+    ngOnInit() {
+        console.log('ngOnInit');
+    }
     
     onNameChanged(value: string){
         this.detail.fullname = value;
