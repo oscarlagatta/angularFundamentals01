@@ -12,13 +12,11 @@ import { PassengerDetailComponent} from './components/passenger-detail/passenger
 // services
 import { PassengerDashboardService } from './passenger-dashboard.service';
 
-
 @NgModule({
     declarations: [
         PassengerDashboardComponent,
         PassengerCountComponent,
         PassengerDetailComponent
-
     ],
     imports: [
         CommonModule,
