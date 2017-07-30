@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Passenger, Child } from '../../models/passenger.interface';
 
 @Component({
@@ -6,30 +6,26 @@ import { Passenger, Child } from '../../models/passenger.interface';
     styleUrls: ['passenger-dashboard.component.scss'],
     template:`
     <div>
-      <h3>Airline Passengers</h3>
-      <ul>
-        <li *ngFor="let passenger of passengers; let i = index;">
-        <span 
-          class="status"
-          [class.checked-In]="passenger.checkedIn"
-        ></span>
-              {{ i }}: {{passenger.fullname }} 
-        <div class="date">
-          Check in Date: {{ passenger.checkInDate ? (passenger.checkedInDate | date: 'yMMMMd' | uppercase) : 'Not checked in'}}
-        </div>
-        <div> 
-          Children: {{ passenger.children?.length || 0}}
-        </div>
-        <div>
-        </div>
-       </li>
-      </ul>
+      <passenger-count
+        [items]="passengers"
+        
+        >
+
+      </passenger-count>
+      <passenger-detail 
+        *ngFor="let passenger of passengers;"
+        [detail]="passenger">
+      </passenger-detail>
     </div>
     `
 })
-export class PassengerDashboardComponent {
+export class PassengerDashboardComponent implements OnInit {
 
-  passengers: Passenger[] = [
+  passengers: Passenger[];
+  
+  ngOnInit(){
+    console.log('ngOnInit');
+    this.passengers = [
       {
         id: 1,
         fullname: 'Stephen',
@@ -66,4 +62,5 @@ export class PassengerDashboardComponent {
         children: null
       }
     ];
+  }
 }
