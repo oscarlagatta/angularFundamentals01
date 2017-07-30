@@ -63,12 +63,26 @@ export class PassengerDashboardComponent implements OnInit {
       }
     ];
   }
-
-  handleRemove(event){
-      console.log(event);
+  
+  handleRemove(event: Passenger){
+    this.passengers = this.passengers.filter((passenger: Passenger) => {
+        return passenger.id !== event.id;
+    });  
+    console.log(event);
   }
 
-  handleEdit(event) {
-    console.log(event);
+  handleEdit(event: Passenger) {
+    this.passengers = this.passengers.map((passenger: Passenger) => {
+      // detects if we are in the current passenger that has been 
+      // fired from the handleEdit event; takes the original 
+      // passenger object and merges the latest changes of the 
+      // event in.
+      if (passenger.id === event.id){
+          // we use an immutable operation 
+          passenger = Object.assign({}, passenger, event);
+      }
+      return passenger;
+    });
+    console.log(this.passengers);
   }
 }
