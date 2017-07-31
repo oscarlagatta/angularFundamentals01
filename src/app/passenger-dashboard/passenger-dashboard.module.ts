@@ -30,5 +30,4 @@ import { PassengerDashboardService } from './passenger-dashboard.service';
     ]
 })
 export class PassengerDashboardModule {
-
 }
