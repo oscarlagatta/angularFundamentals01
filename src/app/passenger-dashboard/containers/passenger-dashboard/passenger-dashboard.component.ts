@@ -28,17 +28,13 @@ export class PassengerDashboardComponent implements OnInit {
   passengers: Passenger[];
 
   constructor(private passengerService: PassengerDashboardService) {
-    
   }
   
   ngOnInit(){
-      // get the data from the service
-      this.passengerService
+    // get the data from the service
+    this.passengerService
         .getPassengers()
-        .subscribe((data: Passenger[]) => {
-            console.log('Data', data);
-            this.passengers = data;
-        });
+        .subscribe((data: Passenger[]) => this.passengers = data);
   }
   
   handleRemove(event: Passenger){
