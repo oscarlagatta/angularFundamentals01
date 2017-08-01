@@ -15,7 +15,6 @@ import 'rxjs/add/observable/throw';
 
 const PASSENGER_API: string = 'http://localhost:3004/passengers';
 
-
 @Injectable()
 export class PassengerDashboardService {
 
@@ -29,6 +28,7 @@ export class PassengerDashboardService {
             .toPromise()
             .then((response: Response) => response.json());
     }
+
     getPassengers(): Observable<Passenger[]> {
         return this.http
           .get(PASSENGER_API)
@@ -57,7 +57,6 @@ export class PassengerDashboardService {
           .then( (response: Response) => response.json());
     }
 
-
     updatePassenger(passenger: Passenger): Observable<Passenger> {
         let headers = new Headers({
             'Content-Type': 'application/json'
@@ -85,6 +84,4 @@ export class PassengerDashboardService {
           .map( (response: Response) => response.json())
           .catch((error: any) => Observable.throw(error.json()));
     }
-
-    
 }

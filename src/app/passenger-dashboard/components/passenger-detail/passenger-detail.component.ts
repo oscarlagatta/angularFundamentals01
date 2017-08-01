@@ -30,9 +30,6 @@ import { Passenger} from '../../models/passenger.interface';
             <!--div class="date">
             Check in Date: {{ detail.checkInDate ? (detail.checkedInDate | date: 'yMMMMd' | uppercase) : 'Not checked in'}}
             </div-->
-            <div class="children"> 
-            Children: {{ detail.children?.length || 0}}
-            </div>
         </div>
     `,
     styleUrls: ['passenger-detail.component.scss']
