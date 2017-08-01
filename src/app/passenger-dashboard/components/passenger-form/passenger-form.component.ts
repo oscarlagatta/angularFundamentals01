@@ -5,21 +5,37 @@ import { Baggage } from '../../models/baggage.interface';
     selector: 'passenger-form',
     styleUrls: ['passenger-form.component.scss'],
     template: `
+        <!-- we use template reference #form -->
         <form #form="ngForm" novalidate>
             {{detail | json}}
             <div>
                 Passenger name: 
+                <!-- we can also use template reference in the input element 
+                    #fullname and we export like ngForm we export ngModel
+                    does also keep track validation state -->
                 <input 
                     type="text" 
                     name="fullname"
+                    required
+                    #fullname="ngModel"                     
                     [ngModel]="detail?.fullname"> <!-- ? safe navigation operator -->
+                    <div *ngIf="fullname.errors?.required && fullname.dirty" class="error">
+                        Passenger name is required
+                    </div>
             </div>
             <div>
                 Passenger ID: 
                 <input 
                     type="number" 
                     name="id"
+                    required
+                    #id='ngModel'
                     [ngModel]="detail?.id"> <!-- ? safe navigation operator -->
+                    <!-- id.touched can be used instead of id.dirty depends on 
+                         the validation strategy -->
+                    <div *ngIf="id.errors?.required && id.dirty" class="error">
+                        Passenger ID is required
+                    </div>
             </div>
             <div>
                 <label>
@@ -51,19 +67,10 @@ import { Baggage } from '../../models/baggage.interface';
                              {{ item.value }}   
                     </option>
                 </select>
-
-                <!-- in case you know the api you can use the ngValue -->
-                <select
-                    name="baggage"
-                    [ngModel]="detail?.baggage"
-                    >
-                    <option *ngFor="let item of baggage" 
-                            [ngValue]="item.key"
-                            [selected]="item.key === detail?.baggage">
-                             {{ item.value }}   
-                    </option>
-                </select>
             </div>
+            <div>{{ form.value | json }}</div>
+            <div>Valid: {{ form.valid | json }}</div>
+            <div>Invalid: {{ form.invalid | json }}</div>
             {{ form.value | json }}
         </form>
     `
