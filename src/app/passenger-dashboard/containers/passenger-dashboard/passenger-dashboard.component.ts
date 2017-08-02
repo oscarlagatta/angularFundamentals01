@@ -12,9 +12,9 @@ import { Router } from '@angular/router';
         [items]="passengers"
         >
       </passenger-count>
-      <div *ngFor="let passenger of passengers;">
+      <!--div *ngFor="let passenger of passengers;">
         {{ passenger.fullname}}
-      </div>
+      </div -->
       <passenger-detail 
         *ngFor="let passenger of passengers;"
         [detail]="passenger"
