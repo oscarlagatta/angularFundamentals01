@@ -1,11 +1,11 @@
 {
   "passengers": [
     {
-      "fullname": "Oscar Lagatta",
+      "fullname": "Steve",
       "id": 1,
       "checkedIn": true,
-      "baggage": "none",
-      "checkInDate": 1490742000000
+      "baggage": "hand-only",
+      "checkInDate": 1501704999425
     },
     {
       "id": 2,

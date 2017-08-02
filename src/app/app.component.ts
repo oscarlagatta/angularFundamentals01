@@ -4,7 +4,19 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <div class="app">
-      <passenger-viewer></passenger-viewer>
+      <nav class="nav">
+        <a routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+          Home
+        </a>
+        <a routerLink="/oops"
+          routerLinkActive="active">
+          404
+        </a>
+      </nav>
+      <router-outlet></router-outlet>
+      <!-- passenger-viewer></passenger-viewer -->
     </div>`,
   styleUrls: ['./app.component.scss']
 })
